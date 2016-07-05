@@ -34,6 +34,11 @@
 #define RF_TYPE_33 0x21
 #define RF_TYPE_48 0x30
 #define RF_TYPE_49 0x31
+#define WLAN_RF_REG_ADDR_START_OFFSET   0x3
+#define WLAN_RF_REG_DATA_START_OFFSET   0xf
+#define WLAN_RF_READ_REG_CMD            0x3
+#define WLAN_RF_WRITE_REG_CMD           0x2
+#define WLAN_RF_READ_CMD_MASK           0x3fff
 
 struct msm_camera_io_ext {
 	uint32_t mdcphy;
@@ -549,6 +554,7 @@ struct msm_i2c_platform_data {
 	int use_gsbi_shared_mode;
 	int keep_ahb_clk_on;
 	void (*msm_i2c_config_gpio)(int iface, int config_type);
+	bool active_only;
 	uint32_t master_id;
 };
 
@@ -632,6 +638,7 @@ void fsm9900_rf_init_gpiomux(void);
 void msm_map_8974_io(void);
 void msm_map_8084_io(void);
 void msm_map_mdm9630_io(void);
+void msm_map_msmkrypton_io(void);
 void msm_map_msmsamarium_io(void);
 void msm_map_msm8625_io(void);
 void msm_map_msm9625_io(void);
@@ -644,6 +651,7 @@ void msm_8974_init_gpiomux(void);
 void apq8084_init_gpiomux(void);
 void msm9625_init_gpiomux(void);
 void mdm9630_init_gpiomux(void);
+void msmkrypton_init_gpiomux(void);
 void msmsamarium_init_gpiomux(void);
 void msm_map_mpq8092_io(void);
 void msm_map_msm8916_io(void);
@@ -686,10 +694,11 @@ void msm_snddev_hsed_voltage_off(void);
 void msm_snddev_tx_route_config(void);
 void msm_snddev_tx_route_deconfig(void);
 
+
 #if defined(CONFIG_MSM_SMD) && defined(CONFIG_DEBUG_FS)
 int smd_debugfs_init(void);
 #else
 static inline int smd_debugfs_init(void) { return 0; }
 #endif
-
+u32 wcnss_rf_read_reg(u32 rf_reg_addr);
 #endif

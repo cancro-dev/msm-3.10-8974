@@ -227,7 +227,7 @@ static struct gpiomux_setting wcnss_5wire_active_cfg = {
 	.drv  = GPIOMUX_DRV_6MA,
 	.pull = GPIOMUX_PULL_DOWN,
 };
-/*
+
 static struct gpiomux_setting wcnss_5gpio_suspend_cfg = {
 	.func = GPIOMUX_FUNC_GPIO,
 	.drv  = GPIOMUX_DRV_2MA,
@@ -239,7 +239,7 @@ static struct gpiomux_setting wcnss_5gpio_active_cfg = {
 	.drv  = GPIOMUX_DRV_6MA,
 	.pull = GPIOMUX_PULL_DOWN,
 };
-*/
+
 static struct gpiomux_setting ath_gpio_active_cfg = {
 	.func = GPIOMUX_FUNC_GPIO,
 	.drv = GPIOMUX_DRV_2MA,
@@ -1276,7 +1276,7 @@ static struct msm_gpiomux_config wcnss_5wire_interface[] = {
 		},
 	},
 };
-/*
+
 static struct msm_gpiomux_config wcnss_5gpio_interface[] = {
 	{
 		.gpio = 36,
@@ -1314,7 +1314,7 @@ static struct msm_gpiomux_config wcnss_5gpio_interface[] = {
 		},
 	},
 };
-*/
+
 static struct msm_gpiomux_config ath_gpio_configs[] = {
 	{
 		.gpio = 51,
@@ -2544,7 +2544,7 @@ void __init msm_8974_init_gpiomux(void)
 			ARRAY_SIZE(apq8074_interposer_config));
 }
 // TODO  need to fix it ..
-/*
+
 static void wcnss_switch_to_gpio(void)
 {
 	// Switch MUX to GPIO 
@@ -2650,4 +2650,4 @@ u32 wcnss_rf_read_reg(u32 rf_reg_addr)
 
 	return rf_data_received;
 }
-*/
+
