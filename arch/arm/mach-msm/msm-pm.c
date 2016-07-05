@@ -819,7 +819,7 @@ static int msm_pc_debug_counters_copy(
 			stat = msm_pc_debug_counters_read_register(
 					data->reg, cpu, j);
 			data->len += scnprintf(data->buf + data->len,
-					sizeof(data->buf)-data->len,
+					sizeof(data->buf) - data->len,
 					"\t%s : %d\n", counter_name[j],
 					stat);
 		}

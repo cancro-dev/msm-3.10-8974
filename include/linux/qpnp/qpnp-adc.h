@@ -243,7 +243,7 @@ enum qpnp_adc_scale_fn_type {
 	SCALE_QRD_BATT_THERM,
 	SCALE_QRD_SKUAA_BATT_THERM,
 	SCALE_SMB_BATT_THERM,
-	SCALE_QRD_SKUG_BATT_THERM,
+	SCALE_QRD_SKUG_BATT_THERM =9,
 	SCALE_NONE,
 };
 
@@ -1035,6 +1035,9 @@ struct qpnp_adc_amux_properties {
 #define QPNP_REV_ID_8026_2_1	5
 #define QPNP_REV_ID_8110_2_0	6
 #define QPNP_REV_ID_8026_2_2	7
+#define QPNP_REV_ID_8941_3_0	8
+#define QPNP_REV_ID_8941_2_0	9
+
 
 /* Public API */
 #if defined(CONFIG_SENSORS_QPNP_ADC_VOLTAGE)				\

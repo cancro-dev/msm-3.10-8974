@@ -109,6 +109,24 @@ static struct msm_gpiomux_config msm_eth_configs[] = {
 };
 #endif
 
+static struct gpiomux_setting gpio_spi_config = {
+	.func = GPIOMUX_FUNC_1,
+	.drv = GPIOMUX_DRV_12MA,
+	.pull = GPIOMUX_PULL_NONE,
+};
+
+static struct gpiomux_setting gpio_spi_cs1_config = {
+	.func = GPIOMUX_FUNC_GPIO,
+	.drv = GPIOMUX_DRV_6MA,
+	.pull = GPIOMUX_PULL_UP,
+};
+
+static struct gpiomux_setting gpio_spi_cs2_config = {
+	.func = GPIOMUX_FUNC_4,
+	.drv = GPIOMUX_DRV_6MA,
+	.pull = GPIOMUX_PULL_DOWN,
+};
+
 static struct msm_gpiomux_config wcnss_5wire_interface[] = {
 	{
 		.gpio = 36,
