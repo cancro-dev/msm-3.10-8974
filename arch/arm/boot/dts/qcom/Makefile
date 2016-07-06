@@ -1,33 +1,11 @@
 ifeq ($(CONFIG_OF),y)
 
-dtb-$(CONFIG_ARCH_MSM8974) += msm8974-v1-cdp.dtb \
-	msm8974-v1-fluid.dtb \
-	msm8974-v1-liquid.dtb \
-	msm8974-v1-mtp.dtb \
-	msm8974-v1-rumi.dtb \
-	msm8974-v1-sim.dtb \
-	msm8974-v2.0-1-cdp.dtb \
-	msm8974-v2.0-1-fluid.dtb \
-	msm8974-v2.0-1-liquid.dtb \
-	msm8974-v2.0-1-mtp.dtb \
-	apq8074-v2.0-1-cdp.dtb \
-	apq8074-v2.0-1-liquid.dtb \
-	apq8074-v2.0-1-dragonboard.dtb \
-	apq8074-v2.2-cdp.dtb \
-	apq8074-v2.2-liquid.dtb \
-	apq8074-v2.2-dragonboard.dtb \
-	msm8974-v2.2-cdp.dtb \
-	msm8974-v2.2-fluid.dtb \
-	msm8974-v2.2-liquid.dtb \
-	msm8974-v2.2-mtp.dtb \
-	msm8974pro-ab-pm8941-cdp.dtb \
-	msm8974pro-ab-pm8941-fluid.dtb \
-	msm8974pro-ab-pm8941-liquid.dtb \
+dtb-$(CONFIG_ARCH_MSM8974) +=  \
 	msm8974pro-ab-pm8941-mtp.dtb \
-	msm8974pro-ac-pm8941-cdp.dtb \
-	msm8974pro-ac-pm8941-liquid.dtb \
 	msm8974pro-ac-pm8941-mtp.dtb \
-	msm8974pro-ac-pma8084-pm8941-mtp.dtb
+	msm8974pro-ac-pma8084-pm8941-mtp.dtb \
+        msm8974pro-ac-pm8941-mtp-v4.dtb \
+        msm8974pro-ac-pm8941-mtp-v5.dtb
 dtb-$(CONFIG_ARCH_MSM8916) += msm8916-sim.dtb \
 	msm8916-rumi.dtb
 dtb-$(CONFIG_ARCH_MSM8226) += msm8226-sim.dtb \
@@ -86,11 +64,7 @@ dtb-$(CONFIG_ARCH_MDM9630) += mdm9630-sim.dtb \
 	mdm9630-cdp.dtb \
 	mdm9630-mtp.dtb
 dtb-$(CONFIG_ARCH_MSMSAMARIUM) += msmsamarium-sim.dtb \
-	msmsamarium-rumi.dtb \
-	msmsamarium-cdp-interposer.dtb \
-	msmsamarium-cdp.dtb \
-	msmsamarium-mtp.dtb \
-	apqsamarium-mtp.dtb
+	msmsamarium-rumi.dtb
 dtb-$(CONFIG_ARCH_MPQ8092) += mpq8092-sim.dtb \
 	mpq8092-rumi.dtb \
 	mpq8092-cdp.dtb \

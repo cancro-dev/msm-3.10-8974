@@ -21,7 +21,23 @@
 		cam_vaf-supply = <&pma8084_l23>;
 	};
 
+	qcom,camera@34 {
+		qcom,vdd-cx-supply = <&pma8084_s2>;
+		cam_vdig-supply = <&pma8084_l3>;
+		cam_vana-supply = <&pma8084_l17>;
+		cam_vio-supply = <&pma8084_lvs4>;
+		cam_vaf-supply = <&pma8084_l23>;
+	};
+
 	qcom,camera@20 {
+		qcom,vdd-cx-supply = <&pma8084_s2>;
+		cam_vdig-supply = <&pma8084_l3>;
+		cam_vana-supply = <&pma8084_l17>;
+		cam_vio-supply = <&pma8084_lvs4>;
+		cam_vaf-supply = <&pma8084_l23>;
+	};
+
+	qcom,camera@34 {
 		qcom,vdd-cx-supply = <&pma8084_s2>;
 		cam_vdig-supply = <&pma8084_l3>;
 		cam_vana-supply = <&pma8084_l17>;
@@ -103,13 +119,14 @@
 			qcom,dis-gpio = <&pma8084_mpps 7 0>;
 			qcom,clk-src-gpio= <&msmgpio 0 0x00>;
 			qcom,clk-src = "BBCLK2";
+			qcom,clk-en-gpio = <&msmgpio 0 0x00>;
 			interrupt-parent = <&msmgpio>;
 			interrupts = <59 0>;
 			qcom,clk-gpio = <&pma8084_gpios 10 0>;
 		};
 	};
 
-	ssusb@f9200000 {
+	qcom,ssusb@f9200000 {
 		vbus_dwc3-supply = <&pm8941_mvs1>;
 	};
 
@@ -275,7 +292,7 @@
 		qcom,output-type = <0>;		/* CMOS */
 		qcom,vin-sel = <2>;		/* PMA8084 S4 = 1.8 V */
 		qcom,out-strength = <3>;	/* High */
-		qcom,src-sel = <3>;		/* Function 2 - SLEEPCLK3  */
+		qcom,src-sel = <3>;       	/* Function 2 - SLEEPCLK3  */
 		qcom,master-en = <1>;
 	};
 

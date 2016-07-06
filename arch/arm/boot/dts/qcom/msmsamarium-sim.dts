@@ -18,10 +18,10 @@
 / {
 	model = "Qualcomm MSM SAMARIUM SIM";
 	compatible = "qcom,msmsamarium-sim", "qcom,msmsamarium", "qcom,sim";
-	qcom,board-id = <16 0>;
+	qcom,msm-id = <195 0 0>;
 };
 
-&blsp1_uart2{
+&uartblsp0dm2{
 	status = "ok";
 };
 

@@ -26,7 +26,7 @@
 		qcom,saw2-spm-dly= <0x3C102800>;
 		qcom,saw2-spm-ctl = <0x1>;
 		qcom,saw2-spm-cmd-wfi = [03 0b 0f];
-		qcom,saw2-spm-cmd-ret = [42 1b 00 d8 5B 03 3B d8 5b 0b 00 42 1b 0f];
+		qcom,saw2-spm-cmd-ret = [42 1b 00 d8 5B 03 d8 5b 0b 00 42 1b 0f];
 		qcom,saw2-spm-cmd-spc = [00 20 80 10 E8 5B 03 3B E8 5B 82 10 0B
 			30 06 26 30 0F];
 		qcom,saw2-spm-cmd-pc = [00 20 80 10 E8 5B 03 3B E8 5B 82 10 0B
@@ -48,7 +48,7 @@
 		qcom,saw2-spm-dly= <0x3C102800>;
 		qcom,saw2-spm-ctl = <0x1>;
 		qcom,saw2-spm-cmd-wfi = [03 0b 0f];
-		qcom,saw2-spm-cmd-ret = [42 1b 00 d8 5B 03 3B d8 5b 0b 00 42 1b 0f];
+		qcom,saw2-spm-cmd-ret = [42 1b 00 d8 5B 03 d8 5b 0b 00 42 1b 0f];
 		qcom,saw2-spm-cmd-spc = [00 20 80 10 E8 5B 03 3B E8 5B 82 10 0B
 			30 06 26 30 0F];
 		qcom,saw2-spm-cmd-pc = [00 20 80 10 E8 5B 03 3B E8 5B 82 10 0B
@@ -70,7 +70,7 @@
 		qcom,saw2-spm-dly= <0x3C102800>;
 		qcom,saw2-spm-ctl = <0x1>;
 		qcom,saw2-spm-cmd-wfi = [03 0b 0f];
-		qcom,saw2-spm-cmd-ret = [42 1b 00 d8 5B 03 3B d8 5b 0b 00 42 1b 0f];
+		qcom,saw2-spm-cmd-ret = [42 1b 00 d8 5B 03 d8 5b 0b 00 42 1b 0f];
 		qcom,saw2-spm-cmd-spc = [00 20 80 10 E8 5B 03 3B E8 5B 82 10 0B
 			30 06 26 30 0F];
 		qcom,saw2-spm-cmd-pc = [00 20 80 10 E8 5B 03 3B E8 5B 82 10 0B
@@ -92,7 +92,7 @@
 		qcom,saw2-spm-dly= <0x3C102800>;
 		qcom,saw2-spm-ctl = <0x1>;
 		qcom,saw2-spm-cmd-wfi = [03 0b 0f];
-		qcom,saw2-spm-cmd-ret = [42 1b 00 d8 5B 03 3B d8 5b 0b 00 42 1b 0f];
+		qcom,saw2-spm-cmd-ret = [42 1b 00 d8 5B 03 d8 5b 0b 00 42 1b 0f];
 		qcom,saw2-spm-cmd-spc = [00 20 80 10 E8 5B 03 3B E8 5B 82 10 0B
 			30 06 26 30 0F];
 		qcom,saw2-spm-cmd-pc = [00 20 80 10 E8 5B 03 3B E8 5B 82 10 0B
@@ -126,10 +126,10 @@
 		qcom,L2-spm-is-apcs-master;
 	};
 
-	qcom,lpm-levels {
+	lpm_levels: qcom,lpm-levels {
 		compatible = "qcom,lpm-levels";
-		qcom,default-l2-state = "l2_cache_retention";
 		qcom,allow-synced-levels;
+		qcom,default-l2-state = "l2_cache_retention";
 		#address-cells = <1>;
 		#size-cells = <1>;
 
@@ -179,7 +179,7 @@
 				qcom,energy-overhead = <577736>;
 				qcom,time-overhead = <1000>;
 				qcom,min-cpu-mode= "standalone_pc";
-				qcom,sync-mode;
+				qcom,sync-cpus;
 			};
 
 			qcom,system-mode@1 {
@@ -189,10 +189,16 @@
 				qcom,energy-overhead = <2274420>;
 				qcom,time-overhead = <6605>;
 				qcom,min-cpu-mode = "pc";
+				qcom,sync-cpus;
 				qcom,send-rpm-sleep-set;
-				qcom,sync-mode;
+				/* qcom,sync-mode; */
 			};
 		};
+	};
+
+	qcom,pm-boot {
+		compatible = "qcom,pm-boot";
+		qcom,mode = "tz";
 	};
 
 	qcom,mpm@fc4281d0 {
@@ -210,6 +216,9 @@
 			<50 172>, /* usb1_hs_async_wakeup_irq */
 			<53 104>, /* mdss_irq */
 			<62 222>, /* ee0_krait_hlos_spmi_periph_irq */
+			<0xff 18>,  /* APCx_qgicQTmrSecPhysIrptReq */
+			<0xff 19>,  /* APCx_qgicQTmrSecPhysIrptReq */
+			<0xff 25>,  /* APCx_qgicExtFaultIrptReq */
 			<0xff 33>,  /* APCC_qgicL2PerfMonIrptReq */
 			<0xff 34>,  /* APCC_qgicL2ErrorIrptReq */
 			<0xff 35>,  /* WDT_barkInt */
@@ -233,7 +242,11 @@
 			<0xff 105>, /* iommu_pmon_nonsecure_irq */
 			<0xff 109>,  /* ocmem_dm_nonsec_irq */
 			<0xff 126>,  /* bam_irq[0] */
+			<0xff 140>,  /* uart_dm_intr */
+			<0xff 146>,  /* uart_dm_intr: blsp2_uart_2_irq */
 			<0xff 155>,  /* sdcc_irq[0] */
+			<0xff 157>,  /* sdcc_irq[0] */
+			<0xff 159>,  /* sdcc_irq[0] */
 			<0xff 163>,  /* usb30_ee1_irq */
 			<0xff 170>,  /* sdcc_pwr_cmd_irq */
 			<0xff 173>, /* o_wcss_apss_smd_hi */
@@ -266,6 +279,8 @@
 			<0xff 207>, /* rpm_ipc(27) */
 			<0xff 211>, /* usb_dwc3_otg */
 			<0xff 240>, /* summary_irq_kpss */
+			<0xff 253>, /* sdcc_pwr_cmd_irq */
+			<0xff 256>, /* sdcc_pwr_cmd_irq */
 			<0xff 268>, /* bam_irq[1] */
 			<0xff 270>, /* bam_irq[0] */
 			<0xff 271>; /* bam_irq[0] */
@@ -312,13 +327,15 @@
 			<41  144>;
 	};
 
-	qcom,pm@fe805664 {
-		compatible = "qcom,pm";
+	qcom,pm-8x60@fe805664 {
+		compatible = "qcom,pm-8x60";
 		#address-cells = <1>;
 		#size-cells = <1>;
 		ranges;
 		reg = <0xfe805664 0x40>;
 		qcom,pc-mode = "tz_l2_int";
+		qcom,cpus-as-clocks;
+		qcom,lpm-levels = <&lpm_levels>;
 
 		qcom,pm-snoc-client {
 			compatible = "qcom,pm-snoc-client";

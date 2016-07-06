@@ -22,5 +22,21 @@
 };
 
 &sdhc_1 {
+	qcom,pad-pull-on = <0x0 0x3 0x3 0x1>; /* no-pull, pull-up, pull-up, pull-down */
+	qcom,pad-pull-off = <0x0 0x3 0x3 0x1>; /* no-pull, pull-up, pull-up, pull-down */
 	qcom,pad-drv-on = <0x4 0x4 0x4>; /* 10mA, 10mA, 10mA */
+};
+
+&soc {
+	i2c@f9928000 {
+		bcm2079x-i2c {
+			compatible = "broadcom,bcm2079x-i2c";
+			reg = <0x77>;
+			interrupt-parent = <&msmgpio>;
+			interrupts = <59 0x01>;
+			broadcom,enable-gpio = <&msmgpio 58 0x00>;
+			broadcom,irq-gpio = <&msmgpio 59 0x00>;
+			broadcom,wake-gpio = <&msmgpio 62 0x00>;
+		};
+	};
 };
